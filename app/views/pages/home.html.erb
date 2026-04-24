@@ -174,12 +174,23 @@
   <div class="process-lab reveal">
     <div class="process-road">
       <div class="process-visual" aria-hidden="true">
-        <div class="process-orbit"></div>
-        <div class="process-core">Plan<br>Build<br>Launch</div>
-        <div class="process-chip"><b>01 Brief</b>Goals, users, scope</div>
-        <div class="process-chip"><b>02 Visual</b>Look, flow, screens</div>
-        <div class="process-chip"><b>03 Sprint</b>Code, review, refine</div>
-        <div class="process-chip"><b>04 Deploy</b>Domain, SSL, monitor</div>
+        <!-- Multiple Orbit Rings -->
+        <div class="process-orbit o-1"></div>
+        <div class="process-orbit o-2"></div>
+        <div class="process-orbit o-3"></div>
+        
+        <div class="process-core">
+          <div class="core-inner">
+            Plan<br>Build<br>Launch
+          </div>
+          <div class="core-glow"></div>
+        </div>
+
+        <!-- Animated Floating Chips -->
+        <div class="process-chip c-1"><b>01 Brief</b>Goals, users, scope</div>
+        <div class="process-chip c-2"><b>02 Visual</b>Look, flow, screens</div>
+        <div class="process-chip c-3"><b>03 Sprint</b>Code, review, refine</div>
+        <div class="process-chip c-4"><b>04 Deploy</b>Domain, SSL, monitor</div>
       </div>
       <div class="process-list">
         <div class="step reveal"><div class="num">01</div><h3>Discover the real goal</h3><p>We convert your idea into clear pages, features, users, and success metrics.</p><div class="mini-meta"><span>Scope</span><span>Requirements</span><span>Direction</span></div></div>
@@ -191,6 +202,8 @@
     <div class="process-note"><span><b>Result:</b> a website that looks premium, explains your offer clearly, and gives visitors something to interact with.</span><a class="btn" href="#contact">Start a project →</a></div>
   </div>
 </section>
+
+<%= render "shared/stack_showcase" %>
 
 <section class="section" id="contact">
   <div class="cta reveal">
