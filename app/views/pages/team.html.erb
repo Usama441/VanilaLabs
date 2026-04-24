@@ -1,0 +1,123 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "team", "data-turbo-track": "reload" %>
+<% end %>
+
+<%= render "shared/header" %>
+
+<div class="noise"></div>
+<div class="cursor-glow" id="glow"></div>
+
+<main>
+  <section class="section team-hero">
+    <div class="reveal">
+      <div class="eyebrow">The Collective</div>
+      <h1>Meet the <span class="gold">engineers and designers</span> behind the lab.</h1>
+      <p class="lead" style="margin: 26px auto 0">We are a small, focused group of product builders who obsess over craft, performance, and depth.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0">
+    <div class="team-grid">
+      <article class="team-card reveal">
+        <div class="team-avatar">
+          <img src="/team/zayn.png" alt="Zayn Rivers">
+        </div>
+        <h3 class="team-name">Zayn Rivers</h3>
+        <div class="team-role">Creative Director</div>
+        <p class="team-bio">Obsessed with visual depth and motion. Zayn ensures every pixel feels alive and intentional.</p>
+        <div class="team-socials">
+          <a href="#" class="social-link">X / Twitter</a>
+          <a href="#" class="social-link">GitHub</a>
+        </div>
+      </article>
+
+      <article class="team-card reveal">
+        <div class="team-avatar">
+          <img src="/team/elena.png" alt="Elena Frost">
+        </div>
+        <h3 class="team-name">Elena Frost</h3>
+        <div class="team-role">Lead Architect</div>
+        <p class="team-bio">Specializing in SaaS systems and complex user flows. Elena builds foundations that scale.</p>
+        <div class="team-socials">
+          <a href="#" class="social-link">LinkedIn</a>
+          <a href="#" class="social-link">Dribbble</a>
+        </div>
+      </article>
+
+      <article class="team-card reveal">
+        <div class="team-avatar">
+          <img src="/team/kaelen.png" alt="Kaelen Voss">
+        </div>
+        <h3 class="team-name">Kaelen Voss</h3>
+        <div class="team-role">System Engineer</div>
+        <p class="team-bio">Server infrastructure and backend automation specialist. Making the invisible work perfectly.</p>
+        <div class="team-socials">
+          <a href="#" class="social-link">GitHub</a>
+          <a href="#" class="social-link">X</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="content-block reveal" style="margin-top: 120px; max-width: 100%;">
+      <div class="eyebrow">Our Culture</div>
+      <h2>A remote-first lab for <span class="gold">deep thinkers.</span></h2>
+      <p class="lead" style="margin-top: 20px">We don't believe in endless meetings or micromanagement. Our team operates on high trust, clear documentation, and long periods of deep focus. This allows us to solve complex problems faster and with more elegance than larger agencies.</p>
+      
+      <div class="about-stats reveal" style="margin-top: 60px">
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Remote First</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4hr</div>
+          <div class="stat-label">Core Sync Window</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Countries Served</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Commitment to Craft</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="team-values reveal" style="margin-top: 140px;">
+      <div class="eyebrow" style="justify-content: center">Our Philosophy</div>
+      <h2>How we <span class="gold">build together.</span></h2>
+      <div class="values-grid">
+        <div class="value-item">
+          <h4>Depth first</h4>
+          <p>We don't do surface-level design. Everything has layers of thought.</p>
+        </div>
+        <div class="value-item">
+          <h4>Performance</h4>
+          <p>If it's not fast, it's not finished. We optimize for every millisecond.</p>
+        </div>
+        <div class="value-item">
+          <h4>Transparency</h4>
+          <p>Direct communication and clear decision-making at every step.</p>
+        </div>
+        <div class="value-item">
+          <h4>Craftsmanship</h4>
+          <p>We treat code and design like fine art. Quality is non-negotiable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="cta reveal">
+      <div class="eyebrow" style="justify-content:center">Join us</div>
+      <h2>Think you belong in <span class="gold">the lab?</span></h2>
+      <p class="lead">We are always looking for people who are obsessed with quality and want to do their best work.</p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn primary" href="/career">View open roles</a>
+        <a class="btn" href="mailto:careers@vanillalabs.io">Send open application</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%= render "shared/footer" %>

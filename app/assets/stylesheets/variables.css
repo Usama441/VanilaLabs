@@ -1,0 +1,29 @@
+:root {
+  /* Colors */
+  --bg: #050505;
+  --panel: #0c0c0c;
+  --panel2: #121212;
+  --panel3: #191919;
+  --line: #292929;
+  --line2: #3a3328;
+  --cream: #f5e6c8;
+  --gold: #d4a853;
+  --gold2: #a9792c;
+  --text: #efefef;
+  --muted: #8a8a8a;
+  --muted2: #5a5a5a;
+
+  /* Typography */
+  --fs-h1: clamp(1.6rem, 4.2vw, 3rem);
+  --fs-h2: clamp(1.5rem, 3.8vw, 2.8rem);
+  --fs-h3: 1.05rem;
+  --fs-lead: clamp(.92rem, 1.55vw, 1.05rem);
+  --fs-body: 15px;
+  --fs-mono: 11px;
+
+  /* Effects */
+  --shadow: 0 28px 90px rgba(0, 0, 0, .45);
+  --radius: 26px;
+  --radius-lg: 36px;
+  --radius-sm: 18px;
+}

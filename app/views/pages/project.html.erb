@@ -1,0 +1,309 @@
+<%= render "shared/header" %>
+
+<div class="noise"></div>
+<div class="cursor-glow" id="glow"></div>
+
+<main>
+  <section class="section project-editorial">
+    <!-- Inline Navigation -->
+    <div class="project-nav-bar reveal" style="position: relative; top: 0; left: 0; transform: none; width: 100%; margin-bottom: 40px;">
+      <a href="/#work" class="nav-btn back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        <span>Back to Work</span>
+      </a>
+      <a href="/work/<%= @next_project[:id] %>" class="nav-btn next-btn">
+        <span>Next Case Study: <%= @next_project[:title] %></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow"><%= @project[:tag] %></div>
+      <h1 class="editorial-title"><%= @project[:title] %></h1>
+      
+      <!-- Detailed Metadata Grid -->
+      <div class="editorial-meta-grid">
+        <div class="meta-block">
+          <b>Project Lead</b>
+          <span><%= @project[:team_roles][:lead] %></span>
+        </div>
+        <div class="meta-block">
+          <b>UI / UX Design</b>
+          <span><%= @project[:team_roles][:ui_ux] %></span>
+        </div>
+        <div class="meta-block">
+          <b>Backend Engineering</b>
+          <span><%= @project[:team_roles][:backend] %></span>
+        </div>
+        <div class="meta-block">
+          <b>Client / Founder</b>
+          <span><%= @project[:founder] %></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Carousel Section -->
+    <div class="project-carousel-container reveal">
+      <div class="carousel-track" id="carouselTrack">
+        <% if @project[:images] && @project[:images].any? %>
+          <% @project[:images].each_with_index do |img, i| %>
+            <div class="carousel-slide <%= 'active' if i == 0 %>" data-index="<%= i %>">
+              <img src="<%= img %>" alt="<%= @project[:title] %> view <%= i + 1 %>">
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="carousel-nav">
+        <button id="prevBtn">←</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <button id="nextBtn">→</button>
+      </div>
+    </div>
+
+    <!-- Editorial Content -->
+    <div class="editorial-grid reveal">
+      <div class="editorial-main">
+        <div class="editorial-brief">
+          <h3>The Narrative</h3>
+          <p class="lead"><%= @project[:full_desc] %></p>
+          <p style="margin-top: 20px;"><%= @project[:brief] %></p>
+        </div>
+
+        <div class="tech-stack-section">
+          <h3>Tech Stack</h3>
+          <div class="stack-pills">
+            <% @project[:stack].each do |tech| %>
+              <div class="stack-pill">
+                <img src="<%= tech[:icon] %>" alt="<%= tech[:name] %>" style="width: 18px; height: 18px; object-fit: contain; filter: brightness(1.2);">
+                <span><%= tech[:name] %></span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="editorial-body">
+          <h3>Execution Detail</h3>
+          <p>By leveraging the power of our internal lab tools, we were able to benchmark performance at every stage of the build. The backend was architected to handle burst traffic, while the frontend utilized a custom-built animation engine for that signature "Vanilla" feel.</p>
+        </div>
+      </div>
+
+      <div class="editorial-sidebar">
+        <div class="sidebar-box">
+          <h4>Engineering Log</h4>
+          <div class="log-entries">
+            <% @project[:log].split('.').each do |entry| %>
+              <% if entry.strip.length > 0 %>
+                <div class="log-entry">
+                  <div class="log-dot"></div>
+                  <span><%= entry.strip %></span>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="sidebar-box" style="margin-top: 30px;">
+          <h4>Capabilities</h4>
+          <ul class="cap-list">
+            <% @project[:points].each do |p| %>
+              <li><%= p %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta reveal" style="margin-top: 100px;">
+      <div class="eyebrow" style="justify-content:center">Next Steps</div>
+      <h2>Ready for <span class="gold">perfection?</span></h2>
+      <div class="btn-row" style="justify-content:center">
+        <a href="/#contact" class="btn primary">Start your project</a>
+        <a href="/#work" class="btn">View all work</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%= render "shared/footer" %>
+
+<style>
+  .project-editorial { padding-top: 140px; max-width: 1120px; margin: 0 auto; }
+  
+  /* Project Nav Bar */
+  .project-nav-bar {
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+  }
+  .nav-btn {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245, 230, 200, 0.1);
+    color: var(--muted);
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: 0.3s;
+  }
+  .nav-btn:hover {
+    border-color: var(--gold);
+    color: var(--cream);
+    background: rgba(212, 168, 83, 0.1);
+    transform: translateY(-2px);
+  }
+  .nav-btn svg { width: 16px; height: 16px; }
+
+  .editorial-title { font-size: clamp(3rem, 8vw, 5.5rem); line-height: 0.9; letter-spacing: -0.04em; margin: 20px 0 40px; }
+  
+  .editorial-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    border-top: 1px solid rgba(245, 230, 200, 0.1);
+    padding: 30px 0 60px;
+  }
+  .meta-block b { display: block; font-family: "DM Mono", monospace; font-size: 11px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .meta-block span { font-size: 1.05rem; color: var(--cream); }
+
+  /* Carousel */
+  .project-carousel-container {
+    position: relative;
+    margin: 60px 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(245, 230, 200, 0.1);
+    background: #090909;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    height: 600px;
+  }
+  .carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.4;
+    transition: opacity 0.6s;
+  }
+  .carousel-slide.active { opacity: 1; }
+  .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+
+  .carousel-nav {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    z-index: 10;
+  }
+  .carousel-nav button {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(245, 230, 200, 0.2);
+    color: var(--cream);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+  }
+  .carousel-nav button:hover { background: var(--gold); color: black; border-color: var(--gold); }
+  .carousel-dots { display: flex; gap: 10px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(245, 230, 200, 0.2); cursor: pointer; transition: 0.3s; }
+  .dot.active { background: var(--gold); transform: scale(1.3); }
+
+  /* Editorial Grid */
+  .editorial-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 80px; align-items: start; }
+  .editorial-brief h3, .editorial-body h3, .tech-stack-section h3 { font-family: "Syne", sans-serif; font-size: 1.8rem; margin-bottom: 20px; color: var(--gold); }
+  .editorial-brief p, .editorial-body p { color: var(--muted); font-size: 1.1rem; line-height: 1.7; }
+  
+  .tech-stack-section { margin: 60px 0; padding: 40px; background: rgba(212, 168, 83, 0.03); border: 1px solid rgba(212, 168, 83, 0.1); border-radius: 24px; }
+  .stack-pills { display: flex; flex-wrap: wrap; gap: 12px; }
+  .stack-pill { 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px; 
+    border-radius: 999px; 
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(245, 230, 200, 0.1); 
+    font-family: "DM Mono", monospace; 
+    font-size: 13px; 
+    color: var(--cream); 
+    transition: 0.3s;
+  }
+  .stack-pill:hover {
+    background: rgba(212, 168, 83, 0.1);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .log-entries { display: flex; flex-direction: column; gap: 20px; }
+  .log-entry { display: flex; gap: 15px; align-items: flex-start; }
+  .log-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin-top: 8px; flex-shrink: 0; box-shadow: 0 0 10px var(--gold); }
+  
+  .sidebar-box { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(245, 230, 200, 0.08); padding: 30px; border-radius: 24px; }
+  .sidebar-box h4 { font-size: 1rem; margin-bottom: 20px; color: var(--cream); font-family: "Syne", sans-serif; }
+  .cap-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .cap-list li { font-size: 0.95rem; color: var(--muted); padding-left: 20px; position: relative; }
+  .cap-list li:before { content: "→"; position: absolute; left: 0; color: var(--gold); }
+
+  @media (max-width: 900px) {
+    .editorial-grid { grid-template-columns: 1fr; gap: 40px; }
+    .editorial-meta-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .carousel-track { height: 400px; }
+  }
+</style>
+
+<script>
+  document.addEventListener("turbo:load", () => {
+    const track = document.getElementById('carouselTrack');
+    if (!track) return;
+    
+    const slides = Array.from(track.children);
+    const dotsContainer = document.getElementById('carouselDots');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIdx = 0;
+
+    // Create dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsContainer.children);
+
+    function goToSlide(index) {
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+      
+      currentIdx = index;
+      track.style.transform = `translateX(-${currentIdx * 100}%)`;
+      
+      slides.forEach(s => s.classList.remove('active'));
+      slides[currentIdx].classList.add('active');
+      
+      dots.forEach(d => d.classList.remove('active'));
+      dots[currentIdx].classList.add('active');
+    }
+
+    nextBtn.addEventListener('click', () => goToSlide(currentIdx + 1));
+    prevBtn.addEventListener('click', () => goToSlide(currentIdx - 1));
+  });
+</script>
